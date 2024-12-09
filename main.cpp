@@ -5,7 +5,7 @@
 
 int main() {
 
-    Image img {"../test-images/spitfire.jpg"};
+    // Image img {"../test-images/spitfire.jpg"};
 
     return 0;
 }

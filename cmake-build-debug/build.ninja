@@ -61,6 +61,18 @@ build CMakeFiles/img_processing.dir/Image.cpp.o: CXX_COMPILER__img_processing_un
   OBJECT_DIR = CMakeFiles/img_processing.dir
   OBJECT_FILE_DIR = CMakeFiles/img_processing.dir
 
+build CMakeFiles/img_processing.dir/JPEG.cpp.o: CXX_COMPILER__img_processing_unscanned_Debug /home/george/CLionProjects/img-processing/JPEG.cpp || cmake_object_order_depends_target_img_processing
+  DEP_FILE = CMakeFiles/img_processing.dir/JPEG.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/img_processing.dir
+  OBJECT_FILE_DIR = CMakeFiles/img_processing.dir
+
+build CMakeFiles/img_processing.dir/PNG.cpp.o: CXX_COMPILER__img_processing_unscanned_Debug /home/george/CLionProjects/img-processing/PNG.cpp || cmake_object_order_depends_target_img_processing
+  DEP_FILE = CMakeFiles/img_processing.dir/PNG.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/img_processing.dir
+  OBJECT_FILE_DIR = CMakeFiles/img_processing.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target img_processing
@@ -69,7 +81,7 @@ build CMakeFiles/img_processing.dir/Image.cpp.o: CXX_COMPILER__img_processing_un
 #############################################
 # Link the executable img_processing
 
-build img_processing: CXX_EXECUTABLE_LINKER__img_processing_Debug CMakeFiles/img_processing.dir/main.cpp.o CMakeFiles/img_processing.dir/Image.cpp.o
+build img_processing: CXX_EXECUTABLE_LINKER__img_processing_Debug CMakeFiles/img_processing.dir/main.cpp.o CMakeFiles/img_processing.dir/Image.cpp.o CMakeFiles/img_processing.dir/JPEG.cpp.o CMakeFiles/img_processing.dir/PNG.cpp.o
   DEP_FILE = CMakeFiles/img_processing.dir/link.d
   FLAGS = -g
   LINK_FLAGS = -rdynamic  -Wl,--dependency-file=CMakeFiles/img_processing.dir/link.d

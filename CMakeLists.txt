@@ -6,4 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
         Image.cpp
         Image.h
-        stb-headers.h)
+        stb-headers.h
+        JPEG.cpp
+        JPEG.h
+        PNG.cpp
+        PNG.h)

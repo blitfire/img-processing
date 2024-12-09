@@ -6,9 +6,9 @@
 #include "stb-headers.h"
 #include "Image.h"
 
-Image::Image(const char *path) {
+Image::Image(const char *path, const int req_channels) : channels{req_channels} {
     // Set required channels to 0 as default, will likely change later on
-    unsigned char *img_bytes {stbi_load(path, &width, &height, &channels, 0)};
+    unsigned char *img_bytes {stbi_load(path, &width, &height, &file_channels, req_channels)};
 
     // At the moment this just exits, but I want to use exceptions
     if (img_bytes == nullptr) {
@@ -16,7 +16,7 @@ Image::Image(const char *path) {
         std::exit(1);
     }
 
-    size = width * height * channels;
+    size = width * height * req_channels;
     // Potentially expensive copy, but for the std::vector features its probably worth it
     data = {img_bytes, img_bytes+size};
     stbi_image_free(img_bytes);

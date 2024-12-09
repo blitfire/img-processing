@@ -8,19 +8,22 @@
 #include <vector>
 
 class Image {
+protected:
     std::vector<unsigned char> data;
-    int width {}, height {}, channels {};
+    int width {}, height {}, file_channels {}, channels {};
 
-    size_t size;
+    size_t size; // Size of image loaded, not necessarily the same as the image file
+
+    Image(const char *path, int req_channels);
 
 public:
-    explicit Image(const char *path);
+    virtual void save(const char *path) const = 0;
 
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }
 
-    // ~Image();
+    virtual ~Image() = default;
 };
 
 
