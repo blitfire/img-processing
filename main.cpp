@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
-#include "Image.h"
+#include "JPEG.h"
 
 
 int main() {
+    JPEG spitfire {"../test-images/spitfire.jpg"};
 
-    // Image img {"../test-images/spitfire.jpg"};
-
+    std::cout << spitfire.getPixel(20, 110).size() << std::endl;
     return 0;
 }

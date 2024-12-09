@@ -5,12 +5,10 @@
 #ifndef PNG_H
 #define PNG_H
 
-#include <complex.h>
-
 #include "Image.h"
 #define PNG_CHANNELS 4
 
-class PNG final : Image {
+class PNG final : public Image {
 public:
     explicit PNG(const char *path) : Image{path, PNG_CHANNELS} {}
 

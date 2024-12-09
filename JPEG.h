@@ -8,7 +8,7 @@
 #include "Image.h"
 #define JPEG_CHANNELS 3
 
-class JPEG final : Image {
+class JPEG final : public Image {
     int compression_quality {100};
 
 public:

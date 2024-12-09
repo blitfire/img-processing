@@ -18,6 +18,11 @@ Image::Image(const char *path, const int req_channels) : channels{req_channels} 
 
     size = width * height * req_channels;
     // Potentially expensive copy, but for the std::vector features its probably worth it
-    data = {img_bytes, img_bytes+size};
+    bytes = {img_bytes, img_bytes+size};
     stbi_image_free(img_bytes);
+}
+
+std::span<const unsigned char> Image::getPixel(const long x, const long y) {
+    const auto pixel_i {bytes.begin() + channels * (width * y + x)};
+    return {pixel_i, pixel_i+channels};
 }
