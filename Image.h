@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string_view>
+#include <optional>
 #include "Pixel.h"
 
 class Image {
@@ -22,7 +23,8 @@ protected:
     virtual void save(const char *path) const = 0;
 
 public:
-    [[nodiscard]] Pixel getPixel(long x, long y);
+    // Using optional because sometimes it's OK if there is no pixel
+    [[nodiscard]] std::optional<Pixel> getPixel(long x, long y);
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }

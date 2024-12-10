@@ -6,6 +6,7 @@
 #define PIXEL_H
 
 #include <span>
+#include <optional>
 
 // This class is here to provide a controlled interface with an individual pixel of a larger image in a simple manner
 class Pixel {

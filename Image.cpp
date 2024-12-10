@@ -9,7 +9,7 @@
 #include "Pixel.h"
 #include "Image.h"
 
-Image::Image(std::string_view path, const int req_channels) : channels{req_channels} {
+Image::Image(const std::string_view path, const int req_channels) : channels{req_channels} {
     // Set required channels to 0 as default, will likely change later on
     unsigned char *img_bytes {stbi_load(path.data(), &width, &height, &file_channels, req_channels)};
 
@@ -24,10 +24,10 @@ Image::Image(std::string_view path, const int req_channels) : channels{req_chann
     stbi_image_free(img_bytes);
 }
 
-Pixel Image::getPixel(const long x, const long y) {
+std::optional<Pixel> Image::getPixel(const long x, const long y) {
     if (x < 0 || x >= width ||
         y < 0 || y >= height) {
-        throw std::out_of_range("Image: Pixel index ["+std::to_string(x)+", "+std::to_string(y)+"] out of range.");
+        return std::nullopt;
     }
 
     const auto pixel_i {bytes.begin() + channels * (width * y + x)};
