@@ -6,7 +6,8 @@
 #define IMAGE_H
 
 #include <vector>
-#include <span>
+#include <string_view>
+#include "Pixel.h"
 
 class Image {
     std::vector<unsigned char> bytes;
@@ -16,14 +17,12 @@ class Image {
     size_t size; // Size of image loaded, not necessarily the same as the image file
 
 protected:
-    Image(const char *path, int req_channels);
+    Image(std::string_view path, int req_channels);
     [[nodiscard]] const std::vector<unsigned char>& getBytes() const { return bytes; }
     virtual void save(const char *path) const = 0;
 
 public:
-
-
-    [[nodiscard]] std::span<const unsigned char> getPixel(long x, long y);
+    [[nodiscard]] Pixel getPixel(long x, long y);
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }

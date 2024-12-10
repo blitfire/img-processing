@@ -3,17 +3,19 @@
 //
 #include <iostream>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 #include "stb-headers.h"
+#include "Pixel.h"
 #include "Image.h"
 
-Image::Image(const char *path, const int req_channels) : channels{req_channels} {
+Image::Image(std::string_view path, const int req_channels) : channels{req_channels} {
     // Set required channels to 0 as default, will likely change later on
-    unsigned char *img_bytes {stbi_load(path, &width, &height, &file_channels, req_channels)};
+    unsigned char *img_bytes {stbi_load(path.data(), &width, &height, &file_channels, req_channels)};
 
     // At the moment this just exits, but I want to use exceptions
     if (img_bytes == nullptr) {
-        std::cerr << "Image " << path << " could not be loaded." << std::endl;
-        std::exit(1);
+        throw std::ios_base::failure("Image \""+std::string(path)+"\" could not be opened.");
     }
 
     size = width * height * req_channels;
@@ -22,7 +24,12 @@ Image::Image(const char *path, const int req_channels) : channels{req_channels} 
     stbi_image_free(img_bytes);
 }
 
-std::span<const unsigned char> Image::getPixel(const long x, const long y) {
+Pixel Image::getPixel(const long x, const long y) {
+    if (x < 0 || x >= width ||
+        y < 0 || y >= height) {
+        throw std::out_of_range("Image: Pixel index ["+std::to_string(x)+", "+std::to_string(y)+"] out of range.");
+    }
+
     const auto pixel_i {bytes.begin() + channels * (width * y + x)};
-    return {pixel_i, pixel_i+channels};
+    return Pixel({pixel_i, pixel_i+channels});
 }

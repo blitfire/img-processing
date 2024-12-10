@@ -10,4 +10,6 @@ add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
         JPEG.cpp
         JPEG.h
         PNG.cpp
-        PNG.h)
+        PNG.h
+        Pixel.cpp
+        Pixel.h)
