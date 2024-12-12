@@ -12,7 +12,7 @@
 class Pixel {
     std::span<unsigned char> bytes;
 public:
-    explicit Pixel(const std::span<unsigned char> p_bytes) : bytes{p_bytes} {}
+    explicit Pixel(const std::span<unsigned char>& p_bytes) : bytes{p_bytes} {}
     Pixel() = default;
     unsigned char& operator[](size_t index);
 };

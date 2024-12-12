@@ -10,7 +10,7 @@
 #include <optional>
 #include "Pixel.h"
 
-class Image {
+class ImageData {
     std::vector<unsigned char> bytes;
     int width {}, height {};
     int file_channels {}, channels {};
@@ -18,7 +18,7 @@ class Image {
     size_t size; // Size of image loaded, not necessarily the same as the image file
 
 protected:
-    Image(std::string_view path, int req_channels);
+    ImageData(std::string_view path, int req_channels);
     [[nodiscard]] const std::vector<unsigned char>& getBytes() const { return bytes; }
     virtual void save(const char *path) const = 0;
 
@@ -29,7 +29,7 @@ public:
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }
 
-    virtual ~Image() = default;
+    virtual ~ImageData() = default;
 };
 
 

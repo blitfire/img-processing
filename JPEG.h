@@ -5,14 +5,14 @@
 #ifndef JPEG_H
 #define JPEG_H
 
-#include "Image.h"
+#include "ImageData.h"
 #define JPEG_CHANNELS 3
 
-class JPEG final : public Image {
+class JPEG final : public ImageData {
     int compression_quality {100};
 
 public:
-    explicit JPEG(const char *path) : Image{path, JPEG_CHANNELS} {}
+    explicit JPEG(const char *path) : ImageData{path, JPEG_CHANNELS} {}
 
     void save(const char *path) const override;
 
