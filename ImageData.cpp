@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include "stb-headers.h"
-#include "Pixel.h"
+#include "PixelRef.h"
 #include "ImageData.h"
 
 ImageData::ImageData(const std::string_view path, const int req_channels) : channels{req_channels} {
@@ -24,12 +24,12 @@ ImageData::ImageData(const std::string_view path, const int req_channels) : chan
     stbi_image_free(img_bytes);
 }
 
-std::optional<Pixel> ImageData::getPixel(const long x, const long y) {
+std::optional<PixelRef> ImageData::getPixel(const long x, const long y) {
     if (x < 0 || x >= width ||
         y < 0 || y >= height) {
         return std::nullopt;
     }
 
     const auto pixel_i {bytes.begin() + channels * (width * y + x)};
-    return Pixel({pixel_i, pixel_i+channels});
+    return PixelRef({pixel_i, pixel_i + channels});
 }

@@ -8,8 +8,9 @@
 #include <vector>
 #include <string_view>
 #include <optional>
-#include "Pixel.h"
+#include "PixelRef.h"
 
+// Virtual class to allow simplified interaction with image files and data
 class ImageData {
     std::vector<unsigned char> bytes;
     int width {}, height {};
@@ -24,7 +25,7 @@ protected:
 
 public:
     // Using optional because sometimes it's OK if there is no pixel
-    [[nodiscard]] std::optional<Pixel> getPixel(long x, long y);
+    [[nodiscard]] std::optional<PixelRef> getPixel(long x, long y);
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }
