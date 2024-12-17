@@ -5,14 +5,10 @@
 #ifndef PNG_H
 #define PNG_H
 
-#include "ImageData.h"
 #define PNG_CHANNELS 4
 
-class PNG final : public ImageData {
-public:
-    explicit PNG(const char *path) : ImageData{path, PNG_CHANNELS} {}
+class PNG {
 
-    void save(const char *path) const override;
 };
 
 

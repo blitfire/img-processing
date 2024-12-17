@@ -5,7 +5,7 @@
 #include <iostream>
 #include "PixelRef.h"
 
-unsigned char& PixelRef::operator[](const size_t index) {
+float& PixelRef::operator[](const size_t index) {
     /* Using an invalid pixel index returns an optional value because a whole pixel can be ignored, but channels are an
      * inherent property of the image. Accessing a channel incorrectly is definitely a problem, accessing a pixel
      * incorrectly might not be.

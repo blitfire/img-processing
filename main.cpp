@@ -16,6 +16,8 @@ int main() {
         std::cerr << e.what() << std::endl;
     } catch (std::ios_base::failure &e) {
         std::cerr << e.what() << std::endl;
+    } catch (std::runtime_error &e) {
+        std::cerr << e.what() << std::endl;
     }
     return 0;
 }

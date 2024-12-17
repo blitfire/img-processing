@@ -4,8 +4,6 @@ project(img_processing)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
-        ImageData.cpp
-        ImageData.h
         stb-headers.h
         JPEG.cpp
         JPEG.h
@@ -15,5 +13,5 @@ add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
         PixelRef.h
         stb/stb_image.h
         stb/stb_image_write.h
-        ImageProc.cpp
-        ImageProc.h)
+        image-data-utils.cpp
+        image-data-utils.h)

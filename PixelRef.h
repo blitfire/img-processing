@@ -6,15 +6,14 @@
 #define PIXEL_H
 
 #include <span>
-#include <optional>
 
 // Acts as a reference to a pixel in an image
 class PixelRef {
-    std::span<unsigned char> bytes;
+    std::span<float> bytes;
 public:
-    explicit PixelRef(const std::span<unsigned char>& p_bytes) : bytes{p_bytes} {}
+    explicit PixelRef(const std::span<float>& p_bytes) : bytes{p_bytes} {}
     PixelRef() = default;
-    unsigned char& operator[](size_t index);
+    float& operator[](size_t index);
 };
 
 
