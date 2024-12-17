@@ -7,25 +7,23 @@
 
 #include <vector>
 #include <string_view>
-#include <optional>
-#include "PixelRef.h"
+#include "Pixel.h"
 
 // Virtual class to allow simplified interaction with image files and data
+// As it stands, this class is implemented with 8-bit-per-channel images in mind
 class ImageData {
-    std::vector<unsigned char> bytes;
+    std::vector<std::vector<Pixel>> pixels;
     int width {}, height {};
-    int file_channels {}, channels {};
-
-    size_t size; // Size of image loaded, not necessarily the same as the image file
+    int channels {};
 
 protected:
     ImageData(std::string_view path, int req_channels);
-    [[nodiscard]] const std::vector<unsigned char>& getBytes() const { return bytes; }
-    virtual void save(const char *path) const = 0;
 
 public:
+    virtual void save(const char *path) const = 0;
+
     // Using optional because sometimes it's OK if there is no pixel
-    [[nodiscard]] std::optional<PixelRef> getPixel(long x, long y);
+    [[nodiscard]] Pixel& getPixel(int x, int y);
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
     [[nodiscard]] int getChannels() const { return channels; }
