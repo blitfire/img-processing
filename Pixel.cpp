@@ -4,7 +4,6 @@
 
 #include "Pixel.h"
 #include <cmath>
-#include <bits/ranges_algo.h>
 
 Pixel::Pixel(const unsigned char numChannels) : data(numChannels, 0.0f) {}
 

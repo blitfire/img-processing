@@ -20,6 +20,8 @@ class JPEG {
 public:
     explicit JPEG(std::string_view path);
     void write(std::string_view path) const;
+    JPEG& flipV();
+    JPEG& flipH();
 
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }

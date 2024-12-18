@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 project(img_processing)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
-        ImageData.cpp
-        ImageData.h
+add_executable(img_processing main.cpp
+#        ImageData.cpp
+#        ImageData.h
         stb-headers.h
         JPEG.cpp
         JPEG.h

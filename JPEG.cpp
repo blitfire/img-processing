@@ -37,3 +37,21 @@ std::vector<unsigned char> JPEG::getBytes() const {
 void JPEG::write(std::string_view path) const {
     stbi_write_jpg(path.data(), width, height, channels, getBytes().data(), compressionQuality);
 }
+
+JPEG& JPEG::flipV() {
+    for (int i {}; i < height / 2; i++) {
+        std::swap(pixels[i], pixels[height-1-i]);
+    }
+
+    return *this;
+}
+
+JPEG& JPEG::flipH() {
+    for (int i {}; i < height; i++) {
+        for (int j {}; j < width / 2; j++) {
+            std::swap(pixels[i][j], pixels[i][width-1-j]);
+        }
+    }
+
+    return *this;
+}

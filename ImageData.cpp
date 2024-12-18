@@ -8,7 +8,6 @@
 #include "Pixel.h"
 #include "ImageData.h"
 #include "PNG.h"
-#include "JPEG.h"
 
 template <typename Format>
 ImageData<Format>::ImageData(const std::string_view path) {
@@ -39,6 +38,3 @@ std::vector<unsigned char> ImageData<Format>::getBytes() const {
     }
     return bytes;
 }
-
-template class ImageData<JPEG>;
-template class ImageData<PNG>;
