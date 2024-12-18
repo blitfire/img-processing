@@ -6,27 +6,26 @@
 #define JPEG_H
 
 #include <string_view>
-#include <optional>
 #include <vector>
-#include "PixelRef.h"
-#define JPEG_CHANNELS 3
+#include "Pixel.h"
 
 class JPEG {
-    std::vector<float> data;
+    std::vector<std::vector<Pixel>> pixels;
     int width {}, height {};
-    int compression_quality {100};
+    static constexpr int channels {3};
+    int compressionQuality {100};
+
+    [[nodiscard]] std::vector<unsigned char> getBytes() const;
 
 public:
     explicit JPEG(std::string_view path);
+    void write(std::string_view path) const;
 
-    void save(std::string_view path) const;
-
-    // Using optional because sometimes it's OK if there is no pixel
-    [[nodiscard]] std::optional<PixelRef> getPixel(long x, long y);
     [[nodiscard]] int getWidth() const { return width; }
     [[nodiscard]] int getHeight() const { return height; }
+    [[nodiscard]] Pixel& getPixel(const int x, const int y) { return pixels[y][x]; }
 
-    void setCompressionQuality(const int quality) { compression_quality = quality; }
+    JPEG& setCompressionQuality(const int quality) { compressionQuality = quality; return *this; }
 };
 
 

@@ -7,18 +7,15 @@
 #include "stb-headers.h"
 #include "Pixel.h"
 #include "ImageData.h"
+#include "PNG.h"
+#include "JPEG.h"
 
-ImageData::ImageData(const std::string_view path, const int req_channels) : channels{req_channels} {
-    int file_channels;
-    // Set required channels to 0 as default, will likely change later on
-    unsigned char *img_bytes {stbi_load(path.data(), &width, &height, &file_channels, channels)};
+template <typename Format>
+ImageData<Format>::ImageData(const std::string_view path) {
+    unsigned char *img_bytes {stbi_load(path.data(), &width, &height, &channels, 0)};
 
-    // At the moment this just exits, but I want to use exceptions
     if (img_bytes == nullptr)
         throw std::ios_base::failure("ImageData \""+std::string(path)+"\" could not be opened.");
-
-    if (file_channels != channels)
-        throw std::runtime_error("File format does not match required format.");
 
     // May require further optimisation
     for (int i {}; i < height; i++) {
@@ -31,6 +28,17 @@ ImageData::ImageData(const std::string_view path, const int req_channels) : chan
     stbi_image_free(img_bytes);
 }
 
-Pixel& ImageData::getPixel(const int x, const int y) {
-    return pixels[y][x];
+template <typename Format>
+std::vector<unsigned char> ImageData<Format>::getBytes() const {
+    std::vector<unsigned char> bytes;
+    for (int i {}; i < height; i++) {
+        for (int j {}; j < width; j++) {
+            std::vector pixelBytes {pixels[i][j].getBytes()};
+            bytes.insert(bytes.end(), pixelBytes.begin(), pixelBytes.end());
+        }
+    }
+    return bytes;
 }
+
+template class ImageData<JPEG>;
+template class ImageData<PNG>;

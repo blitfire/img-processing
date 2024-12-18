@@ -13,7 +13,5 @@ add_executable(img_processing main.cpp stb/stb_image.h stb/stb_image_write.h
         PNG.h
         stb/stb_image.h
         stb/stb_image_write.h
-        ImageProc.cpp
-        ImageProc.h
         Pixel.cpp
         Pixel.h)
